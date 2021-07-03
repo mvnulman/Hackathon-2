@@ -5,7 +5,7 @@
       </div>
       <div id="form-box" class="col-md-12">
         <h2>Fill in the data as best you can to find your developer faster!</h2>
-        <form action="">
+        <form action="/jobs/add" method="POST">
           <div class="form-group">
             <label for="title">Job Title:</label>
             <input type="text" class="form-control" id="title" name="title" placeholder="Enter the job title" required>
@@ -28,7 +28,7 @@
             <input type="text" class="form-control" id="salary" name="salary" placeholder="Enter the Salary of the vacancy" required>
           </div>
           <input type="hidden" name="new_job" value="1">
-          <button type="submit" class="btn btn-primary">Send</button>
+          <button type="submit" class="btn btn-primary" id="send">Send</button>
         </form>
       </div>
     </div>

@@ -4,30 +4,55 @@
 
 
  //test route via Postman
- router.get('/test', (req,res) => {
+ router.get('/test', (req, res) => {
      res.send('it works');
  });
 
-router.get('/add', (req, res) => {
-    res.render('add');
-})
+
+ //job role details => view/1, view/2
+ router.get('/view/:id', (req, res) => Job.findOne({
+     where: {
+         id: req.params.id
+     }
+ }).then(job => {
+
+     res.render('view', {
+         job
+     })
+
+ }).catch(err => console.log(err)));
+
+
+
+ //send route form
+ router.get('/add', (req, res) => {
+     res.render('add');
+ })
 
  // add job via post
  router.post('/add', (req, res) => {
 
-    let {title, salary, company, description, email, new_job} = req.body;
+     let {
+         title,
+         salary,
+         company,
+         description,
+         email,
+         new_job
+     } = req.body;
 
-    // insert
-    Job.create({
-        title,
-        description,
-        salary,
-        company,
-        email,
-        new_job
-    })
-    .then(() => res.redirect('/'))
-    .catch(err => console.log(err));
+     // insert
+     Job.create({
+             title,
+             description,
+             salary,
+             company,
+             email,
+             new_job
+         })
+         .then(() => res.redirect('/'))
+         .catch(err => console.log(err));
+
  })
 
  module.exports = router
