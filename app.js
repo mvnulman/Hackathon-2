@@ -7,6 +7,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const Jobs = require('./models/Job');
 const Job = require('./models/Job');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 const PORT = 3000;
 
@@ -40,19 +42,42 @@ db
 //It will show on the root path ('/') the response that i'm sending. Used to check if the path it's retrieving info.
 //Also, 'routes'.
 app.get('/', (req, res) => {
+
+    let search = req.query.job;
+    let query  = '%'+search+'%'; // PH -> PHP, Word -> Wordpress, press -> Wordpress
+
+    if(!search) {
+        Job.findAll({order: [
+          ['createdAt', 'DESC']
+        ]})
+        .then(jobs => {
+      
+          res.render('index', {
+            jobs
+          });
+      
+        })
+        .catch(err => console.log(err));
+      } else {
+        Job.findAll({
+          where: {title: {[Op.like]: query}},
+          order: [
+            ['createdAt', 'DESC']
+        ]})
+        .then(jobs => {
+          console.log(search);
+          console.log(search);
+      
+          res.render('index', {
+            jobs, search
+          });
+      
+        })
+        .catch(err => console.log(err));
+      }
     
-    Job.findAll({order: [
-      ['createdAt', 'DESC']  
-    ]})
-    .then(jobs => {
-
-        res.render('index', {
-           jobs 
-        });
-
+      
     });
-
-});
 
 //jobs routes
 app.use('/jobs', require('./routes/jobs'));

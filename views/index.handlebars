@@ -1,9 +1,9 @@
   <div id="top-container" class="container-fluid">
         <h1 id="main-title" class="text-center">Find your Dream's Job here!</h1>
-        <p id="main-subtitle" class="text-center">We are the site with the most technology vacancies on the market, aimed at the home office</p>
-        <form id="search-form" class="form-inline" action="">
+        <p id="main-subtitle" class="text-center">We are the website with the most technology job-list on the market, aimed at the home office</p>
+        <form id="search-form" class="form-inline" action="/" method="GET" >
           <div class="form-group col-md-10">
-            <input type="text" class="form-control" id="job" name="job" placeholder="Enter the vacancy you are looking for">
+            <input type="text" class="form-control" id="job" name="job" placeholder="Enter the job title you are looking for">
           </div>
           <div class="col-md-2">
             <button type="submit" class="btn btn-primary">Search</button>
@@ -14,7 +14,11 @@
         <div id="jobs-container" class="container">
           <div class="row">
             <div class="col-md-12">
-              <h2 id="job-list-title">See our featured vacancies</h2>
+              {{#if search}}
+                <h2 id="job-list-title">Searching for jobs that contain: {{search}}</h2>
+              {{else}}
+                <h2 id="job-list-title">See our featured jobs</h2>
+              {{/if}}
               <ul id="job-list" class="list-group">
                 {{#each jobs}}
                 <li class="list-group-item {{#if dataValues.new_job}}new-job{{/if}}">
@@ -23,7 +27,7 @@
                   <h2>{{dataValues.title}}</h2>
                   <p>${{dataValues.salary}}</p>
                   <span class="new-job-label">New</span>
-                  <a class="btn btn-primary">See this vacancy</a>
+                  <a class="btn btn-primary">See this job</a>
                 </li>
                 {{/each}}
               </ul>
