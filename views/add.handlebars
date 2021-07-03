@@ -1,0 +1,35 @@
+  <div id="add-form-container" class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center">Advertise the vacancy by filling out the form</h1>
+      </div>
+      <div id="form-box" class="col-md-12">
+        <h2>Fill in the data as best you can to find your developer faster!</h2>
+        <form action="">
+          <div class="form-group">
+            <label for="title">Job Title:</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Digite o título da vaga" required>
+            <small id="titleHelp" class="form-text text-muted">The title is very important, be clear and objective.</small>
+          </div>
+          <div class="form-group">
+            <label for="description">Job Description:</label>
+            <textarea type="text" class="form-control" id="description" name="description" placeholder="Describe the developer's activities..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="company">Contracting company:</label>
+            <input type="text" class="form-control" id="company" name="company" placeholder="Enter the company you are going to hire" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Type the e-mail address for contact" required>
+          </div>
+          <div class="form-group">
+            <label for="salary">Salary offered:</label>
+            <input type="text" class="form-control" id="salary" name="salary" placeholder="Enter the Salary of the vacancy" required>
+          </div>
+          <input type="hidden" name="new_job" value="1">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>

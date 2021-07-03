@@ -1,8 +1,10 @@
 //init the express server parameters
 const express = require('express');
+const exphbs = require('express-handlebars')
 const app = express();
 const db = require ('./db/connection');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const PORT = 3000;
 
@@ -14,6 +16,14 @@ app.listen(PORT, function() {
 
 //body.parser here
 app.use(bodyParser.urlencoded({extended: false}));
+
+// handle bars
+app.set('views', path.join(__dirname, 'views'));
+app.engine('handlebars', exphbs({defaultLayout:'main'}));
+app.set('view engine', 'handlebars');
+
+// static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 //db connection
 db
@@ -28,7 +38,7 @@ db
 //It will show on the root path ('/') the response that i'm sending. Used to check if the path it's retrieving info.
 //Also, 'routes'.
 app.get('/', (req, res) => { 
-    res.send('Working!');
+    res.render('index');
 });
 
 //jobs routes
