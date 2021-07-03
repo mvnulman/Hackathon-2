@@ -5,6 +5,8 @@ const app = express();
 const db = require ('./db/connection');
 const bodyParser = require('body-parser');
 const path = require('path');
+const Jobs = require('./models/Job');
+const Job = require('./models/Job');
 
 const PORT = 3000;
 
@@ -37,8 +39,19 @@ db
 
 //It will show on the root path ('/') the response that i'm sending. Used to check if the path it's retrieving info.
 //Also, 'routes'.
-app.get('/', (req, res) => { 
-    res.render('index');
+app.get('/', (req, res) => {
+    
+    Job.findAll({order: [
+      ['createdAt', 'DESC']  
+    ]})
+    .then(jobs => {
+
+        res.render('index', {
+           jobs 
+        });
+
+    });
+
 });
 
 //jobs routes
