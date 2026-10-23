@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/mvnulman/Hackathon-2#readme",
   "dependencies": {
-    "body-parser": "^1.20.0",
+    "body-parser": "^1.20.6",
     "express": "^5.3.0",
     "express-handlebars": "^9.0.2",
     "sequelize": "^6.37.8",
